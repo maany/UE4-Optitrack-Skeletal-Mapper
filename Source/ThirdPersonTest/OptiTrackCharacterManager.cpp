@@ -17,6 +17,7 @@ void AOptiTrackCharacterManager::BeginPlay()
 	Super::BeginPlay();
 	USkeletalMeshComponent* mesh = character->GetMesh();
 	//UAnimInstance* animInstance = mesh->getAnimInstance();
+	//mesh->EvaluateAnimation
 	
 }
 
