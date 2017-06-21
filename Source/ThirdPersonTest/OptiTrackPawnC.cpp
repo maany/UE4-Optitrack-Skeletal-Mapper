@@ -11,6 +11,10 @@ AOptiTrackPawnC::AOptiTrackPawnC()
 
 }
 
+void AOptiTrackPawnC::SunshineTest()
+{
+}
+
 // Called when the game starts or when spawned
 void AOptiTrackPawnC::BeginPlay()
 {
@@ -21,18 +25,30 @@ void AOptiTrackPawnC::BeginPlay()
 	poseableMesh = NewObject<UPoseableMeshComponent>(this);
 	poseableMesh->RegisterComponent();
 	poseableMesh->SkeletalMesh = this->skeletalMesh;
+	poseableMesh->ToggleVisibility();
 	//poseableMesh->SkeletalMesh = skeletalMesh;
 	// calculate transforms
-	FRotator rotation = FRotator(0.0,3.0,0.0);
+	yawCount++;
+	if (yawCount > 90) {
+		yawCount = 0;
+	}
+	//UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "OptiTrack")
+	rotation = FRotator(0.0,yawCount,0.0);
 	//apply bone action
-	poseableMesh->SetBoneRotationByName(FName("hand_r"), rotation, EBoneSpaces::ComponentSpace);
+	//poseableMesh->SetBoneRotationByName(FName("hand_r"), rotation, EBoneSpaces::ComponentSpace);
 }
 
 // Called every frame
 void AOptiTrackPawnC::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
+	// calculate transforms
+	yawCount++;
+	if (yawCount > 90) {
+		yawCount = 0;
+	}
+	//UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "OptiTrack")
+	rotation = FRotator(0.0, yawCount, 0.0);
 }
 
 // Called to bind functionality to input

@@ -10,7 +10,7 @@
 #include "OptiTrackPawnC.generated.h"
 
 
-UCLASS()
+UCLASS(Blueprintable)
 class THIRDPERSONTEST_API AOptiTrackPawnC : public APawn
 {
 	GENERATED_BODY()
@@ -21,11 +21,18 @@ public:
 	// The PoseableMesh Component
 	UPoseableMeshComponent* poseableMesh;
 	// SkeletalMesh
-	UPROPERTY(EditAnywhere, Category = "OptiTrack")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "OptiTrack")
 	USkeletalMesh* skeletalMesh;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "OptiTrack")
+	FRotator rotation;
+
+	UFUNCTION(BlueprintCallable, Category = "OptiTrack")
+	void SunshineTest();
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	float yawCount = 0;
 
 public:	
 	// Called every frame
